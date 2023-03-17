@@ -10,7 +10,6 @@ const AllBooks = () => {
 
   useEffect(() => {
     console.log("BOOK STATUS", bookStatus);
-    console.log("PROCESS.ENV:", process.env.NODE_ENV.REACT_APP_NYT_API_KEY);
     if (bookStatus === "idle") {
       dispatch(fetchAllBooksAsync());
     }

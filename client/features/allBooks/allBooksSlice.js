@@ -4,8 +4,6 @@ import axios from "axios";
 export const fetchAllBooksAsync = createAsyncThunk("/allBooks", async () => {
   try {
     const res = await axios.get(`/api/nyt`);
-
-    console.log("BOOKS FROM NYT:", res.data.results.books);
     const bookList = res.data.results.books;
     return bookList;
   } catch (err) {
