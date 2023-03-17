@@ -20,14 +20,18 @@ const AllBooks = () => {
   if (bookStatus === "loading") {
     content = <h1>Loading</h1>;
   } else if (bookStatus === "succeeded") {
-    // Sort posts in reverse chronological order by datetime string
-    // const orderedPosts = posts
-    //   .slice()
-    //   .sort((a, b) => b.date.localeCompare(a.date));
-
-    // content = allBooks.books[0].title;
     content = allBooks.books.map((book) => {
-      return <div>{book.title}</div>;
+      return (
+        <div className="allBooksBook">
+          <div>
+            {book.title} by {book.author}
+          </div>
+          <img src={book.book_image} alt="Book Image" />
+          <p>{book.description}</p>
+          <p>Price: {book.price}</p>
+          <button>Add to Cart</button>
+        </div>
+      );
     });
   } else if (bookStatus === "failed") {
     content = <div>{error}</div>;
@@ -36,8 +40,6 @@ const AllBooks = () => {
   console.log(content);
   console.log(bookStatus);
   console.log(allBooks.books);
-
-  // console.log("ALL BOOKS FROM ALL BOOKS COMPONENT:", allBooks);
   return (
     <div>
       <h1>Browse All New York Times Bestsellers</h1>
