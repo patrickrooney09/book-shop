@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBooksAsync, selectAllBooks } from "./allBooksSlice";
+
 import { Link } from "react-router-dom";
+import SingleBook from "../singleBook/SingleBook";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -27,8 +29,6 @@ const AllBooks = () => {
             {index + 1}. <Link to={`/singleBook/${index}`}>{book.title}</Link>{" "}
             by {book.author}
           </div>
-          <img src={book.book_image} alt="Book Image" />
-          <p>{book.description}</p>
           <p>Price: {book.price}</p>
           <button>Add to Cart</button>
         </div>

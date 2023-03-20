@@ -34,7 +34,8 @@ export const allBooksSlice = createSlice({
     });
     builder.addCase(fetchAllBooksAsync.fulfilled, (state, action) => {
       state.status = "succeeded";
-      state.books = state.books.concat(action.payload);
+      // state.books = state.books.concat(action.payload);
+      state.books = action.payload;
       // state.me = action.payload;
     });
     builder.addCase(fetchAllBooksAsync.rejected, (state, action) => {
