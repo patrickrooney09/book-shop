@@ -31,16 +31,31 @@ const SingleBook = () => {
   // const singleBook = useSelector(selectSingleBook);
 
   // console.log("SINGLE BOOK:", singleBook);
-  return (
-    <div>
-      <h1>Hello</h1>
-      <h1>{book.title}</h1>
-      <h2>by {book.author}</h2>
-      <img></img>
-      <img src={book.book_image} alt="Book Image" />
-      <p>{book.description}</p>
-    </div>
-  );
+  if (bookStatus === "loading") {
+    return <h1>Loading</h1>;
+  } else if (bookStatus === "succeeded") {
+    return (
+      <div>
+        <h1>{book.title}</h1>
+        <h2>by {book.author}</h2>
+        <img></img>
+        <img src={book.book_image} alt="Book Image" />
+        <p>{book.description}</p>
+      </div>
+    );
+  } else if (bookStatus === "failed") {
+    content = <div>{error}</div>;
+  }
+  // return (
+  //   <div>
+  //     <h1>Hello</h1>
+  //     <h1>{book.title}</h1>
+  //     <h2>by {book.author}</h2>
+  //     <img></img>
+  //     <img src={book.book_image} alt="Book Image" />
+  //     <p>{book.description}</p>
+  //   </div>
+  // );
 };
 
 export default SingleBook;
