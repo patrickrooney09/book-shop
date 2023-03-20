@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import AllBooks from "../features/allBooks/AllBooks";
-import SingleBook from "../singleBook/SingleBook";
+import SingleBook from "../features/singleBook/SingleBook";
 import { me } from "./store";
 
 /**
@@ -26,7 +26,7 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
           <Route path="/allBooks" element={<AllBooks />} />
-          <Route path="/singleBook" element={<SingleBook />} />
+          <Route path="/singleBook/:bookId" element={<SingleBook />} />
         </Routes>
       ) : (
         <Routes>
@@ -43,7 +43,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/allBooks" element={<AllBooks />} />
-          <Route path="/singleBook" element={<SingleBook />} />
+          <Route path="/singleBook/:bookId" element={<SingleBook />} />
         </Routes>
       )}
     </div>

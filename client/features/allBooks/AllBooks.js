@@ -24,8 +24,8 @@ const AllBooks = () => {
       return (
         <div className="allBooksBook" key={index}>
           <div>
-            {index + 1}. <Link to="/singleBook">{book.title}</Link> by{" "}
-            {book.author}
+            {index + 1}. <Link to={`/singleBook/${index}`}>{book.title}</Link>{" "}
+            by {book.author}
           </div>
           <img src={book.book_image} alt="Book Image" />
           <p>{book.description}</p>
