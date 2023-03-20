@@ -37,21 +37,3 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
-router.get("/:bookId", async (req, res, next) => {
-  try {
-    const options = {
-      method: "GET",
-      url: `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NYT_API_KEY}`,
-    };
-    axios.request(options).then((response) => {
-      res.json(response.data.results.books[req.params.bookId]);
-    });
-
-    // else {
-    //   res.sendStatus(404);
-    // }
-  } catch (error) {
-    next(error);
-  }
-});
