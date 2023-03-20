@@ -35,7 +35,6 @@ export const allBooksSlice = createSlice({
     builder.addCase(fetchAllBooksAsync.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.books = state.books.concat(action.payload);
-      console.log("state fulfilled", state.books);
       // state.me = action.payload;
     });
     builder.addCase(fetchAllBooksAsync.rejected, (state, action) => {
