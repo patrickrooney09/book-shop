@@ -30,6 +30,7 @@ const AllBooks = () => {
             by {book.author}
           </div>
           <p>Price: {book.price}</p>
+          <img src={book.book_image} alt="Book Image" width="50" height="50" />
           <button>Add to Cart</button>
         </div>
       );

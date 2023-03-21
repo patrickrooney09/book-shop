@@ -27,6 +27,7 @@ const SingleBook = () => {
         <img></img>
         <img src={book.book_image} alt="Book Image" />
         <p>{book.description}</p>
+        <button>Add To Cart</button>
       </div>
     );
   } else if (bookStatus === "failed") {
