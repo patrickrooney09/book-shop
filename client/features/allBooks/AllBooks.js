@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBooksAsync, selectAllBooks } from "./allBooksSlice";
+import { addBook } from "../guestCart/guestCartSlice";
 
 import { Link } from "react-router-dom";
 import SingleBook from "../singleBook/SingleBook";
@@ -31,7 +32,13 @@ const AllBooks = () => {
           </div>
           <p>Price: {book.price}</p>
           <img src={book.book_image} alt="Book Image" width="50" height="50" />
-          <button>Add to Cart</button>
+          <button
+            onClick={() => {
+              dispatch(addBook(book));
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       );
     });
