@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectGuestCart } from "./guestCartSlice";
-import { removeBook } from "./guestCartSlice";
+import {
+  removeBook,
+  increaseQuantity,
+  decreaseQuantity,
+} from "./guestCartSlice";
 
 const GuestCart = () => {
   const guestBooks = useSelector(selectGuestCart);
@@ -27,8 +31,23 @@ const GuestCart = () => {
                 dispatch(removeBook(book, index));
               }}
             >
-              -
+              Remove Book
             </button>
+            <button
+              onClick={() => {
+                dispatch(increaseQuantity(book, index));
+              }}
+            >
+              Increase quantity
+            </button>
+            <button
+              onClick={() => {
+                dispatch(decreaseQuantity(book, index));
+              }}
+            >
+              decrease quantity
+            </button>
+            <p>Quantity: {book.quantity}</p>
           </div>
         );
       })}
