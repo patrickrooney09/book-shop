@@ -18,10 +18,7 @@ export const guestCartSlice = createSlice({
       let book = Object.assign({}, action.payload);
       book.quantity = 1;
       state.push(book);
-      sessionStorage.setItem(
-        action.payload.title,
-        JSON.stringify(action.payload)
-      );
+      sessionStorage.setItem(book.title, JSON.stringify(book));
       console.log(sessionStorage);
     },
     removeBook: (state, action, index) => {
