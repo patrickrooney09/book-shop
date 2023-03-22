@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllBooks } from "../allBooks/allBooksSlice";
 import { fetchAllBooksAsync } from "../allBooks/allBooksSlice";
+import { addBook } from "../guestCart/guestCartSlice";
 
 const SingleBook = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,13 @@ const SingleBook = () => {
         <img></img>
         <img src={book.book_image} alt="Book Image" />
         <p>{book.description}</p>
-        <button>Add To Cart</button>
+        <button
+          onClick={() => {
+            dispatch(addBook(book));
+          }}
+        >
+          Add To Cart
+        </button>
       </div>
     );
   } else if (bookStatus === "failed") {

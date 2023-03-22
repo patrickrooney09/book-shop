@@ -6,22 +6,73 @@ const initialState =
         return JSON.parse(currentBook);
       })
     : [];
+
 export const guestCartSlice = createSlice({
   name: "guestCart",
   initialState,
   reducers: {
     addBook: (state, action) => {
-      console.log("book:", action);
-      console.log(state);
-      state.push(action.payload);
-      sessionStorage.setItem(
-        action.payload.title,
-        JSON.stringify(action.payload)
-      );
-      console.log(sessionStorage);
+      // making copy of object so i can add a quantity property to it
+      let book = Object.assign({}, action.payload);
+
+      if (state.length > 0) {
+        state.filter((currentBook, index) => {
+          if (book.title === currentBook.title) {
+            currentBook.quantity++;
+            sessionStorage.removeItem(book.title);
+            sessionStorage.setItem(
+              currentBook.title,
+              JSON.stringify(currentBook)
+            );
+          } else if (
+            index === state.length - 1 &&
+            book.title !== currentBook.title
+          ) {
+            console.log("bookbookbook", book);
+            book.quantity = 1;
+            state.push(book);
+            sessionStorage.setItem(book.title, JSON.stringify(book));
+          }
+        });
+      } else {
+        book.quantity = 1;
+        state.push(book);
+        sessionStorage.setItem(book.title, JSON.stringify(book));
+      }
     },
     removeBook: (state, action, index) => {
+      console.log(action.payload.title);
+      sessionStorage.removeItem(action.payload.title);
       state.splice(index, 1);
+    },
+    increaseQuantity(state, action, index) {
+      // must filter here instead of accessing array directly
+      state.filter((currentBook) => {
+        if (currentBook.title === action.payload.title) {
+          currentBook.quantity++;
+          sessionStorage.removeItem(currentBook.title);
+          sessionStorage.setItem(
+            currentBook.title,
+            JSON.stringify(currentBook)
+          );
+        }
+      });
+    },
+    decreaseQuantity(state, action, index) {
+      // must filter here instead of accessing array directly
+      state.filter((currentBook) => {
+        if (
+          currentBook.title === action.payload.title &&
+          currentBook.quantity > 1
+        ) {
+          currentBook.quantity--;
+          sessionStorage.removeItem(currentBook.title);
+          sessionStorage.setItem(
+            currentBook.title,
+            JSON.stringify(currentBook)
+          );
+        }
+      });
     },
   },
 });
@@ -30,6 +81,7 @@ export const selectGuestCart = (state) => {
   return state.guestCart;
 };
 
-export const { addBook, removeBook } = guestCartSlice.actions;
+export const { addBook, removeBook, increaseQuantity, decreaseQuantity } =
+  guestCartSlice.actions;
 
 export default guestCartSlice.reducer;
