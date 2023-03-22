@@ -6,14 +6,18 @@ const initialState =
         return JSON.parse(currentBook);
       })
     : [];
+
 export const guestCartSlice = createSlice({
   name: "guestCart",
   initialState,
   reducers: {
     addBook: (state, action) => {
       console.log("book:", action);
-      console.log(state);
-      state.push(action.payload);
+      console.log("state", state);
+      // making copy of object so i can add a quantity property to it
+      let book = Object.assign({}, action.payload);
+      book.quantity = 1;
+      state.push(book);
       sessionStorage.setItem(
         action.payload.title,
         JSON.stringify(action.payload)
