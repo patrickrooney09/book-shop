@@ -16,6 +16,7 @@ export const guestCartSlice = createSlice({
       let book = Object.assign({}, action.payload);
 
       if (state.length > 0) {
+        let found = false;
         state.filter((currentBook, index) => {
           if (book.title === currentBook.title) {
             currentBook.quantity++;
@@ -24,11 +25,8 @@ export const guestCartSlice = createSlice({
               currentBook.title,
               JSON.stringify(currentBook)
             );
-          } else if (
-            index === state.length - 1 &&
-            book.title !== currentBook.title
-          ) {
-            console.log("bookbookbook", book);
+            found = true;
+          } else if (index === state.length - 1 && found === false) {
             book.quantity = 1;
             state.push(book);
             sessionStorage.setItem(book.title, JSON.stringify(book));
@@ -81,7 +79,12 @@ export const selectGuestCart = (state) => {
   return state.guestCart;
 };
 
-export const { addBook, removeBook, increaseQuantity, decreaseQuantity } =
-  guestCartSlice.actions;
+export const {
+  addBook,
+  removeBook,
+  increaseQuantity,
+  decreaseQuantity,
+  getQuantity,
+} = guestCartSlice.actions;
 
 export default guestCartSlice.reducer;
