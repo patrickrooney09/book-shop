@@ -16,7 +16,6 @@ const Navbar = () => {
   const quantity = guestBooks.reduce((previousValue, currentValue) => {
     return (previousValue += currentValue.quantity);
   }, 0);
-  console.log("QUANTITY:", quantity);
 
   return (
     <div>

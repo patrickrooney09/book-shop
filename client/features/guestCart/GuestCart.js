@@ -10,7 +10,6 @@ import {
 const GuestCart = () => {
   const guestBooks = useSelector(selectGuestCart);
   const dispatch = useDispatch();
-  console.log(guestBooks);
   return (
     <div>
       <h1>Your Cart Good Sir</h1>
