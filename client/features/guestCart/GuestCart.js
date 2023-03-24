@@ -10,6 +10,7 @@ import {
 const GuestCart = () => {
   const guestBooks = useSelector(selectGuestCart);
   const dispatch = useDispatch();
+
   return (
     <div>
       <h1>Your Cart Good Sir</h1>
@@ -50,7 +51,7 @@ const GuestCart = () => {
           </div>
         );
       })}
-      <button>Check Out</button>
+      <button>Proceed to checkout</button>
     </div>
   );
 };
