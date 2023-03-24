@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectGuestCart } from "./guestCartSlice";
 import {
@@ -10,6 +11,8 @@ import {
 const GuestCart = () => {
   const guestBooks = useSelector(selectGuestCart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Your Cart Good Sir</h1>
@@ -50,6 +53,9 @@ const GuestCart = () => {
           </div>
         );
       })}
+      <button onClick={() => navigate("/guestCheckout")}>
+        Proceed to checkout
+      </button>
     </div>
   );
 };

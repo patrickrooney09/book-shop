@@ -10,8 +10,6 @@ const SingleBook = () => {
   const { bookId } = useParams();
   const bookStatus = useSelector((state) => state.books.status);
 
-  useEffect(() => {}, [bookStatus, dispatch]);
-
   if (bookStatus === "idle") {
     dispatch(fetchAllBooksAsync());
   }
