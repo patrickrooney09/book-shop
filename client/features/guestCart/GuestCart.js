@@ -50,6 +50,7 @@ const GuestCart = () => {
           </div>
         );
       })}
+      <button>Check Out</button>
     </div>
   );
 };
