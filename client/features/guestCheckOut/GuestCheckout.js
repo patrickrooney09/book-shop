@@ -9,7 +9,7 @@ const GuestCheckOut = () => {
   return (
     <div>
       <h1>Checkout</h1>
-      <button onClick={navigate("/guestCart")}>Back To Cart</button>
+      <button onClick={() => navigate("/guestCart")}>Back To Cart</button>
       <form>
         <h3>Enter Shipping Address:</h3>
         <label>Street:</label>
