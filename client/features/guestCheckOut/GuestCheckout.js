@@ -10,6 +10,7 @@ const GuestCheckOut = () => {
     <div>
       <h1>Checkout</h1>
       <button onClick={() => navigate("/guestCart")}>Back To Cart</button>
+
       <form>
         <h3>Enter Shipping Address:</h3>
         <label>Street:</label>
@@ -22,6 +23,7 @@ const GuestCheckOut = () => {
         <input type="text" name="zipCode" />
         <label>Email Address:</label>
         <input type="text" name="emailAddress" />
+        <button>Submit Order</button>
       </form>
       <div>
         <h3>Your Items:</h3>
