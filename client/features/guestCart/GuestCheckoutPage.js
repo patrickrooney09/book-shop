@@ -17,7 +17,6 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const guestBooks = useSelector(selectGuestCart);
   const address = useSelector(selectGuestCheckoutAddress);
-  console.log(address);
 
   return (
     <div>
@@ -80,7 +79,7 @@ const CheckoutPage = () => {
             dispatch(addEmail(event.target.value));
           }}
         />
-        <button type="submit">Submit Order</button>
+        <button>Submit Order</button>
       </form>
       <div>
         <h3>Your Items:</h3>
