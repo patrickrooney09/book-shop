@@ -24,8 +24,19 @@ const GuestConfirmationPage = () => {
             </li>
           );
         })}
-        will be sent to {address.name},{address.street},{address.city},
-        {address.state}, {address.zip} for a total price of ${totalPrice}
+        will be sent to{" "}
+        <div>
+          {address.name}
+          <br />
+          {address.street}
+          <br />
+          {address.city}
+          <br />
+          {address.state}
+          <br />
+          {address.zip}
+        </div>{" "}
+        for a total price of ${totalPrice}
       </div>
     </div>
   );
