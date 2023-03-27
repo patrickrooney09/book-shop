@@ -8,6 +8,7 @@ import SingleBook from "../features/singleBook/SingleBook";
 import GuestCart from "../features/guestCart/GuestCart";
 import { me } from "./store";
 import GuestCheckoutPage from "../features/guestCart/GuestCheckoutPage";
+import GuestConfirmationPage from "../features/confirmationPage/GuestConfirmationPage";
 
 /**
  * COMPONENT
@@ -48,6 +49,10 @@ const AppRoutes = () => {
           <Route path="/singleBook/:bookId" element={<SingleBook />} />
           <Route path="/guestCart" element={<GuestCart />} />
           <Route path="/GuestCheckoutPage" element={<GuestCheckoutPage />} />
+          <Route
+            path="/GuestConfirmationPage"
+            element={<GuestConfirmationPage />}
+          />
         </Routes>
       )}
     </div>

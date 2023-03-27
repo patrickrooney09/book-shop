@@ -17,6 +17,10 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const guestBooks = useSelector(selectGuestCart);
   const address = useSelector(selectGuestCheckoutAddress);
+  const totalPrice = guestBooks.reduce((previousValue, currentValue) => {
+    return previousValue + Number(currentValue.price);
+  }, 0);
+  console.log(totalPrice);
 
   return (
     <div>
@@ -79,8 +83,11 @@ const CheckoutPage = () => {
             dispatch(addEmail(event.target.value));
           }}
         />
-        <button>Submit Order</button>
       </form>
+      <button onClick={() => navigate("/GuestConfirmationPage")}>
+        Submit Order
+      </button>
+
       <div>
         <h3>Your Items:</h3>
         <ul>
@@ -95,6 +102,7 @@ const CheckoutPage = () => {
           })}
         </ul>
       </div>
+      <h3>Total Price: ${totalPrice}</h3>
     </div>
   );
 };
