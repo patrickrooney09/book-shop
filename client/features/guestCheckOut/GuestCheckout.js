@@ -43,4 +43,4 @@ const GuestCheckOut = () => {
   );
 };
 
-export default GuestCheckOut;
+export default GuestCheckout;
