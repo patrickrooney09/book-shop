@@ -13,6 +13,7 @@ export const guestCartSlice = createSlice({
   reducers: {
     addBook: (state, action) => {
       // making copy of object so i can add a quantity property to it
+
       let book = Object.assign({}, action.payload);
 
       if (state.length > 0) {
@@ -72,6 +73,9 @@ export const guestCartSlice = createSlice({
         }
       });
     },
+    clearCart(state, action) {
+      return (state = []);
+    },
   },
 });
 
@@ -85,6 +89,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   getQuantity,
+  clearCart,
 } = guestCartSlice.actions;
 
 export default guestCartSlice.reducer;
