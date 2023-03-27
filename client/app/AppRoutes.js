@@ -6,7 +6,6 @@ import Home from "../features/home/Home";
 import AllBooks from "../features/allBooks/AllBooks";
 import SingleBook from "../features/singleBook/SingleBook";
 import GuestCart from "../features/guestCart/GuestCart";
-import GuestCheckout from "../features/guestCheckOut/GuestCheckout";
 import { me } from "./store";
 
 /**
@@ -47,7 +46,6 @@ const AppRoutes = () => {
           <Route path="/allBooks" element={<AllBooks />} />
           <Route path="/singleBook/:bookId" element={<SingleBook />} />
           <Route path="/guestCart" element={<GuestCart />} />
-          <Route path="/guestCheckout" element={<GuestCheckout />} />
         </Routes>
       )}
     </div>
