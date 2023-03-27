@@ -53,7 +53,7 @@ const GuestCart = () => {
           </div>
         );
       })}
-      <button onClick={() => navigate("/guestCheckout")}>
+      <button onClick={() => navigate("/GuestCheckoutPage")}>
         Proceed to checkout
       </button>
     </div>

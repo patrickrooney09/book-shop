@@ -13,6 +13,7 @@ export const guestCartSlice = createSlice({
   reducers: {
     addBook: (state, action) => {
       // making copy of object so i can add a quantity property to it
+
       let book = Object.assign({}, action.payload);
 
       if (state.length > 0) {
