@@ -3,7 +3,7 @@ import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import allBooksReducer from "../features/allBooks/allBooksSlice";
 import guestCartReducer from "../features/guestCart/guestCartSlice";
-import guestCheckoutReducer from "../features/guestCheckOut/guestCheckoutSlice";
+import guestCheckoutReducer from "../features/guestCheckout/guestCheckOutSlice";
 
 const store = configureStore({
   reducer: {
