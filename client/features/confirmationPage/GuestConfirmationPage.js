@@ -1,9 +1,10 @@
 import React from "react";
 import { selectGuestCheckoutAddress } from "../guestCart/guestCheckoutAddressSlice";
-import { selectGuestCart } from "../guestCart/guestCartSlice";
-import { useSelector } from "react-redux";
+import { clearCart, selectGuestCart } from "../guestCart/guestCartSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const GuestConfirmationPage = () => {
+  const dispatch = useDispatch();
   const books = useSelector(selectGuestCart);
   const address = useSelector(selectGuestCheckoutAddress);
   const totalPrice = books.reduce((previousValue, currentValue) => {

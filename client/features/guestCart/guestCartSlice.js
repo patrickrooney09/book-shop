@@ -73,6 +73,9 @@ export const guestCartSlice = createSlice({
         }
       });
     },
+    clearCart(state, action) {
+      return (state = []);
+    },
   },
 });
 
@@ -86,6 +89,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   getQuantity,
+  clearCart,
 } = guestCartSlice.actions;
 
 export default guestCartSlice.reducer;

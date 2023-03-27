@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectGuestCart } from "./guestCartSlice";
+import { clearCart, selectGuestCart } from "./guestCartSlice";
 import {
   addName,
   addStreet,
@@ -20,7 +20,6 @@ const CheckoutPage = () => {
   const totalPrice = guestBooks.reduce((previousValue, currentValue) => {
     return previousValue + Number(currentValue.price);
   }, 0);
-  console.log(totalPrice);
 
   return (
     <div>
@@ -84,7 +83,11 @@ const CheckoutPage = () => {
           }}
         />
       </form>
-      <button onClick={() => navigate("/GuestConfirmationPage")}>
+      <button
+        onClick={() => {
+          navigate("/GuestConfirmationPage");
+        }}
+      >
         Submit Order
       </button>
 
