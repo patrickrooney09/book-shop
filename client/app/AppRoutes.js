@@ -6,7 +6,7 @@ import Home from "../features/home/Home";
 import AllBooks from "../features/allBooks/AllBooks";
 import SingleBook from "../features/singleBook/SingleBook";
 import GuestCart from "../features/guestCart/GuestCart";
-import GuestCheckout from "../features/guestCheckout/GuestCheckOut";
+import GuestCheckout from "../features/guestCheckout/GuestCheckout";
 import { me } from "./store";
 
 /**
