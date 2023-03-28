@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, selectGuestCart } from "./guestCartSlice";
+import { addItems, addAddress } from "../guestReceipt/guestReceiptSlice";
 import {
   addName,
   addStreet,
@@ -98,6 +99,10 @@ const CheckoutPage = () => {
           } else if (address.email === "") {
             alert("email field must not be empty");
           } else {
+            dispatch(addItems(guestBooks));
+            dispatch(addAddress(address));
+            dispatch(clearCart());
+            sessionStorage.clear();
             navigate("/GuestReceipt");
           }
         }}

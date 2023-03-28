@@ -1,13 +1,13 @@
 import React from "react";
 import { selectGuestCheckoutAddress } from "../guestCart/guestCheckoutAddressSlice";
-import { clearCart, selectGuestCart } from "../guestCart/guestCartSlice";
+import { selectGuestReceipt } from "./guestReceiptSlice";
+
 import { useSelector, useDispatch } from "react-redux";
 
 const GuestReceipt = () => {
   const dispatch = useDispatch();
-  const books = useSelector(selectGuestCart);
-  const address = useSelector(selectGuestCheckoutAddress);
-  const totalPrice = books.reduce((previousValue, currentValue) => {
+  const receipt = useSelector(selectGuestReceipt);
+  const totalPrice = receipt.items.reduce((previousValue, currentValue) => {
     return previousValue + Number(currentValue.price);
   }, 0);
 
@@ -16,7 +16,7 @@ const GuestReceipt = () => {
       <h1>Order Confirmation</h1>
       <div>
         Your Order of:{" "}
-        {books.map((book, index) => {
+        {receipt.items.map((book, index) => {
           return (
             <li key={index}>
               <strong>Title:</strong> {book.title} <strong>Author:</strong>{" "}
@@ -27,15 +27,15 @@ const GuestReceipt = () => {
         })}
         will be sent to{" "}
         <div>
-          {address.name}
+          {receipt.address.name}
           <br />
-          {address.street}
+          {receipt.address.street}
           <br />
-          {address.city}
+          {receipt.address.city}
           <br />
-          {address.state}
+          {receipt.address.state}
           <br />
-          {address.zip}
+          {receipt.address.zip}
         </div>{" "}
         for a total price of ${totalPrice}
       </div>
