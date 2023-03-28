@@ -85,7 +85,23 @@ const CheckoutPage = () => {
       </form>
       <button
         onClick={() => {
-          navigate("/GuestConfirmationPage");
+          if (address.name === "") {
+            alert("Name field must not be empty");
+          } else if (address.street === "") {
+            alert("Street field must not be empty");
+          } else if (address.city === "") {
+            alert("City field must not be empty");
+          } else if (address.zip === "") {
+            alert("Zip Code field must not be empty");
+          } else if (isNaN(address.zip)) {
+            console.log(typeof Number(address.zip));
+            alert("Zip Code must be a number");
+          } else if (address.email === "") {
+            alert("email field must not be empty");
+          } else {
+            console.log(typeof Number(address.zip));
+            navigate("/GuestConfirmationPage");
+          }
         }}
       >
         Submit Order
