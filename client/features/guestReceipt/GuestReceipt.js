@@ -3,7 +3,7 @@ import { selectGuestCheckoutAddress } from "../guestCart/guestCheckoutAddressSli
 import { clearCart, selectGuestCart } from "../guestCart/guestCartSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-const GuestConfirmationPage = () => {
+const GuestReceipt = () => {
   const dispatch = useDispatch();
   const books = useSelector(selectGuestCart);
   const address = useSelector(selectGuestCheckoutAddress);
@@ -43,4 +43,4 @@ const GuestConfirmationPage = () => {
   );
 };
 
-export default GuestConfirmationPage;
+export default GuestReceipt;
