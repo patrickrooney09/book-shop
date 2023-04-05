@@ -5,6 +5,7 @@ import { logout } from "../../app/store";
 import { selectGuestCart } from "../guestCart/guestCartSlice";
 
 const Navbar = () => {
+  const username = useSelector((state) => state.auth.me.username);
   const guestBooks = useSelector(selectGuestCart);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Navbar = () => {
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
+            <Link to="/allBooks">Browse Books</Link>
+            Hi there, {username}
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
