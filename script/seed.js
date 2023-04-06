@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Cart },
 } = require("../server/db");
 
 /**
@@ -19,6 +19,16 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
     User.create({ username: "eliza", password: "123" }),
   ]);
+
+  await Promise.all(
+    users.map((currentUser) => {
+      console.log(currentUser);
+      return Cart.create({
+        name: `${currentUser.username}'s cart`,
+        userId: currentUser.id,
+      });
+    })
+  );
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
