@@ -16,12 +16,16 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     const item = await Item.findOrCreate({
-      where: { title: req.body.title },
+      where: { title: req.body.title, cartId: req.body.cartId },
       defaults: req.body,
     });
-    res.status(201).send(item);
+    const newItem = await Item.increment("quantity", {
+      by: 1,
+      where: { title: req.body.title, cartId: req.body.cartId },
+    });
+    console.log(newItem);
+    res.status(201).send(newItem);
   } catch (error) {
     next(error);
   }
