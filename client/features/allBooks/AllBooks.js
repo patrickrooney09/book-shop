@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBooksAsync, selectAllBooks } from "./allBooksSlice";
 import { addBook } from "../guestCart/guestCartSlice";
-
+import { addItemAsync } from "../userCart/userCartSlice";
 import { Link } from "react-router-dom";
 import SingleBook from "../singleBook/SingleBook";
 
@@ -11,6 +11,7 @@ const AllBooks = () => {
   const allBooks = useSelector(selectAllBooks);
   const bookStatus = useSelector((state) => state.books.status);
   const error = useSelector((state) => state.books.error);
+  const user = useSelector((state) => state.auth.me);
 
   useEffect(() => {
     if (bookStatus === "idle") {
@@ -35,6 +36,10 @@ const AllBooks = () => {
           <button
             onClick={() => {
               dispatch(addBook(book));
+
+              if (user) {
+                dispatch(addItemAsync({ ...book, cartId: user.id }));
+              }
             }}
           >
             Add to Cart
