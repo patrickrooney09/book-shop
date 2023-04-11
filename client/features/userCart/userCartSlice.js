@@ -6,13 +6,33 @@ export const addItemAsync = createAsyncThunk("addItem", async (itemData) => {
   return data;
 });
 
+export const getItemsAsync = createAsyncThunk("getItems", async (id) => {
+  const { data } = await axios.get(`/api/items/${id}`);
+  return data;
+});
+
 const allItemsSlice = createSlice({
   name: "allItems",
-  initialState: [],
+  initialState: {
+    items: [],
+    status: "idle",
+    error: null,
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addItemAsync.fulfilled, (state, action) => {
       state.push(action.payload);
+    });
+    builder.addCase(getItemsAsync.pending, (state, action) => {
+      state.status = "loading";
+    });
+    builder.addCase(getItemsAsync.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.items = action.payload;
+    });
+    builder.addCase(getItemsAsync.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
     });
   },
 });

@@ -6,6 +6,7 @@ import { selectGuestCart } from "../guestCart/guestCartSlice";
 
 const Navbar = () => {
   const username = useSelector((state) => state.auth.me.username);
+  const userId = useSelector((state) => state.auth.me.id);
   const guestBooks = useSelector(selectGuestCart);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Navbar = () => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/allBooks">Browse Books</Link>
-            <Link to="userCart">Cart</Link>
+            <Link to={`/userCart/${userId}`}>Cart</Link>
             Hi there, {username}
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
