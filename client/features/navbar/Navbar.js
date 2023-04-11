@@ -27,6 +27,7 @@ const Navbar = () => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/allBooks">Browse Books</Link>
+            <Link to="userCart">Cart</Link>
             Hi there, {username}
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout

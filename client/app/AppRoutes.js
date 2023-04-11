@@ -9,6 +9,7 @@ import GuestCart from "../features/guestCart/GuestCart";
 import { me } from "./store";
 import GuestCheckoutPage from "../features/guestCart/GuestCheckoutPage";
 import GuestReceipt from "../features/guestReceipt/GuestReceipt";
+import UserCart from "../features/userCart/UserCart";
 
 /**
  * COMPONENT
@@ -30,6 +31,7 @@ const AppRoutes = () => {
           <Route to="/home" element={<Home />} />
           <Route path="/allBooks" element={<AllBooks />} />
           <Route path="/singleBook/:bookId" element={<SingleBook />} />
+          <Route path="/userCart" element={<UserCart />} />
         </Routes>
       ) : (
         <Routes>

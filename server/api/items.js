@@ -5,9 +5,9 @@ const {
 
 module.exports = router;
 
-router.get("/", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const items = await Item.findAll();
+    const items = await Item.findAll({ where: { cartId: req.params.id } });
     res.json(items);
   } catch (error) {
     next(error);
