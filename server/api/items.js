@@ -16,15 +16,21 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
+    //possibly delete the saved variable
     const item = await Item.findOrCreate({
       where: { title: req.body.title, cartId: req.body.cartId },
-      defaults: req.body,
+      // defaults: req.body,
+      defaults: {
+        title: req.body.title,
+        author: req.body.author,
+        price: req.body.price,
+        book_image: req.body.book_image,
+      },
     });
     const newItem = await Item.increment("quantity", {
       by: 1,
       where: { title: req.body.title, cartId: req.body.cartId },
     });
-    console.log(newItem);
     res.status(201).send(newItem);
   } catch (error) {
     next(error);
