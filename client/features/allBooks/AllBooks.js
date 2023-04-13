@@ -36,8 +36,9 @@ const AllBooks = () => {
           <button
             onClick={() => {
               dispatch(addBook(book));
-
-              if (user) {
+              console.log("USER:", user);
+              if (Object.keys(user).length > 0) {
+                // checking if the user object is empty- previously i had this as if user undefined
                 dispatch(addItemAsync({ ...book, cartId: user.id }));
               }
             }}

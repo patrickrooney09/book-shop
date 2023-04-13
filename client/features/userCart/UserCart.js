@@ -23,7 +23,15 @@ const UserCart = () => {
     userItems = <h1>Loading</h1>;
   } else if (cartStatus === "succeeded") {
     userItems = items.items.map((item, index) => {
-      return <div>{item.title}</div>;
+      return (
+        <div key={index}>
+          {" "}
+          <img src={item.book_image} alt="Book Image" width="50" height="50" />
+          <div>{item.title}</div>
+          <div>{item.author}</div>
+          <div>{item.quantity}</div>
+        </div>
+      );
     });
   } else if (cartStatus === "failed") {
     userItems = <div>{error}</div>;

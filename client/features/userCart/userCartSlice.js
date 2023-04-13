@@ -21,7 +21,7 @@ const allItemsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addItemAsync.fulfilled, (state, action) => {
-      state.push(action.payload);
+      state.items.push(action.payload);
     });
     builder.addCase(getItemsAsync.pending, (state, action) => {
       state.status = "loading";
