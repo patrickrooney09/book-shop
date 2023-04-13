@@ -27,11 +27,12 @@ router.post("/", async (req, res, next) => {
         book_image: req.body.book_image,
       },
     });
-    const newItem = await Item.increment("quantity", {
+    await Item.increment("quantity", {
       by: 1,
       where: { title: req.body.title, cartId: req.body.cartId },
     });
-    res.status(201).send(newItem);
+    console.log("NEW ITEM", item);
+    res.status(201).send(item);
   } catch (error) {
     next(error);
   }
