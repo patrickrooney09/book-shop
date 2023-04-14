@@ -16,7 +16,6 @@ export const deleteItemAsync = createAsyncThunk(
   "deleteItem",
   async (idObject) => {
     const { cartId, itemId } = idObject;
-    console.log(idObject);
     const { data } = await axios.delete(`/api/items/${cartId}/${itemId}`);
     return data;
   }

@@ -19,7 +19,6 @@ router.post("/", async (req, res, next) => {
     //possibly delete the saved variable
     const item = await Item.findOrCreate({
       where: { title: req.body.title, cartId: req.body.cartId },
-      // defaults: req.body,
       defaults: {
         title: req.body.title,
         author: req.body.author,
@@ -31,7 +30,7 @@ router.post("/", async (req, res, next) => {
       by: 1,
       where: { title: req.body.title, cartId: req.body.cartId },
     });
-    console.log("NEW ITEM", item);
+
     res.status(201).send(item);
   } catch (error) {
     next(error);
@@ -41,7 +40,6 @@ router.post("/", async (req, res, next) => {
 //delete item in user cart
 router.delete("/:cartId/:itemId", async (req, res, next) => {
   try {
-    console.log("REQ.PARAMS:", req.params);
     const cart = await Item.findAll({ where: { cartId: req.params.cartId } });
 
     let item = await cart.filter((currentBook) => {
@@ -50,11 +48,6 @@ router.delete("/:cartId/:itemId", async (req, res, next) => {
         return currentBook;
       }
     });
-
-    // const item = await Item.findByPk({
-    //   where: { cartId: req.params.cartId, id: req.params.itemId },
-    // });
-    console.log(item[0]);
 
     await item[0].destroy();
     res.send(item);

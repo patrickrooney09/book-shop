@@ -14,7 +14,6 @@ const UserCart = () => {
   const items = useSelector(selectAllItems);
 
   const { userId } = useParams();
-  console.log(userId);
 
   useEffect(() => {
     if (cartStatus === "idle") {
@@ -38,7 +37,6 @@ const UserCart = () => {
           <div>{item.quantity}</div>
           <button
             onClick={() => {
-              console.log("button pressed");
               let idObject = { cartId: Number(userId), itemId: item.id };
               dispatch(deleteItemAsync(idObject));
             }}
