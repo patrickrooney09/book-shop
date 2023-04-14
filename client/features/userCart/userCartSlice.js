@@ -12,6 +12,16 @@ export const getItemsAsync = createAsyncThunk("getItems", async (id) => {
   return data;
 });
 
+export const deleteItemAsync = createAsyncThunk(
+  "deleteItem",
+  async (idObject) => {
+    const { cartId, itemId } = idObject;
+    console.log(idObject);
+    const { data } = await axios.delete(`/api/items/${cartId}/${itemId}`);
+    return data;
+  }
+);
+
 const allItemsSlice = createSlice({
   name: "allItems",
   initialState: {
@@ -35,6 +45,9 @@ const allItemsSlice = createSlice({
     builder.addCase(getItemsAsync.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
+    });
+    builder.addCase(deleteItemAsync.fulfilled, (state, action) => {
+      state.status = "idle";
     });
   },
 });

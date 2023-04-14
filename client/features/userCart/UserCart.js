@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getItemsAsync, selectAllItems } from "./userCartSlice";
+import {
+  getItemsAsync,
+  selectAllItems,
+  deleteItemAsync,
+} from "./userCartSlice";
 import { useParams } from "react-router-dom";
 
 const UserCart = () => {
@@ -10,6 +14,7 @@ const UserCart = () => {
   const items = useSelector(selectAllItems);
 
   const { userId } = useParams();
+  console.log(userId);
 
   useEffect(() => {
     if (cartStatus === "idle") {
@@ -23,6 +28,7 @@ const UserCart = () => {
     userItems = <h1>Loading</h1>;
   } else if (cartStatus === "succeeded") {
     userItems = items.items.map((item, index) => {
+      console.log("ITEM:", item.id);
       return (
         <div key={index}>
           {" "}
@@ -30,6 +36,15 @@ const UserCart = () => {
           <div>{item.title}</div>
           <div>{item.author}</div>
           <div>{item.quantity}</div>
+          <button
+            onClick={() => {
+              console.log("button pressed");
+              let idObject = { cartId: Number(userId), itemId: item.id };
+              dispatch(deleteItemAsync(idObject));
+            }}
+          >
+            Delete
+          </button>
         </div>
       );
     });

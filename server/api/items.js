@@ -37,3 +37,28 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+//delete item in user cart
+router.delete("/:cartId/:itemId", async (req, res, next) => {
+  try {
+    console.log("REQ.PARAMS:", req.params);
+    const cart = await Item.findAll({ where: { cartId: req.params.cartId } });
+
+    let item = await cart.filter((currentBook) => {
+      console.log(currentBook.id === Number(req.params.itemId));
+      if (currentBook.id === Number(req.params.itemId)) {
+        return currentBook;
+      }
+    });
+
+    // const item = await Item.findByPk({
+    //   where: { cartId: req.params.cartId, id: req.params.itemId },
+    // });
+    console.log(item[0]);
+
+    await item[0].destroy();
+    res.send(item);
+  } catch (error) {
+    next(error);
+  }
+});
