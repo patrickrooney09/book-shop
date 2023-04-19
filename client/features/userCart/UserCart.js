@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getItemsAsync,
   selectAllItems,
   deleteItemAsync,
+  decreaseItemQuantityAsync,
 } from "./userCartSlice";
 import { useParams } from "react-router-dom";
 
@@ -42,6 +43,19 @@ const UserCart = () => {
             }}
           >
             Delete
+          </button>
+          <button>Increase Quantity</button>
+          <button
+            onClick={() => {
+              dispatch(
+                decreaseItemQuantityAsync({
+                  title: item.title,
+                  cartId: Number(userId),
+                })
+              );
+            }}
+          >
+            Decrease Quantity
           </button>
         </div>
       );

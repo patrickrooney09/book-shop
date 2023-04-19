@@ -6,6 +6,14 @@ export const addItemAsync = createAsyncThunk("addItem", async (itemData) => {
   return data;
 });
 
+export const decreaseItemQuantityAsync = createAsyncThunk(
+  "decreaseQuantity",
+  async (itemData) => {
+    const { data } = await axios.put("/api/items", itemData);
+    return data;
+  }
+);
+
 export const getItemsAsync = createAsyncThunk("getItems", async (id) => {
   const { data } = await axios.get(`/api/items/${id}`);
   return data;

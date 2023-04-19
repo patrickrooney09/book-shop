@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBooksAsync, selectAllBooks } from "./allBooksSlice";
 import { addBook } from "../guestCart/guestCartSlice";
 import { addItemAsync } from "../userCart/userCartSlice";
 import { Link } from "react-router-dom";
 import SingleBook from "../singleBook/SingleBook";
+import { increaseOrderQuantity, decreaseOrderQuantity } from "./allBooksSlice";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,23 @@ const AllBooks = () => {
           >
             Add to Cart
           </button>
+          <div>
+            <button
+              onClick={() => {
+                dispatch(decreaseOrderQuantity(book, index));
+              }}
+            >
+              -
+            </button>
+            Quantity: {book.customerDefaultQuantity}
+            <button
+              onClick={() => {
+                dispatch(increaseOrderQuantity(book, index));
+              }}
+            >
+              +
+            </button>
+          </div>
         </div>
       );
     });

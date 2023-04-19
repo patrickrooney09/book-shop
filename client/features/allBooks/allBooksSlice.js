@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import guestCartSlice from "../guestCart/guestCartSlice";
 
 export const fetchAllBooksAsync = createAsyncThunk("/allBooks", async () => {
   try {
     const res = await axios.get(`/api/nyt`);
     const bookList = res.data.results.books;
+    bookList.map((currentBook) => {
+      currentBook.customerDefaultQuantity = 1;
+    });
     return bookList;
   } catch (err) {
     if (err.response.data) {
@@ -25,7 +29,26 @@ export const allBooksSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    increaseOrderQuantity: (state, action, index) => {
+      console.log(action.payload);
+      state.books.filter((currentBook) => {
+        console.log(currentBook.customerDefaultQuantity);
+        if (currentBook.title === action.payload.title) {
+          currentBook.customerDefaultQuantity++;
+        }
+      });
+
+      // action.payload.customerDefaultQuantity++;
+    },
+    decreaseOrderQuantity: (state, action, index) => {
+      state.books.filter((currentBook) => {
+        if (currentBook.title === action.payload.title) {
+          currentBook.customerDefaultQuantity--;
+        }
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAllBooksAsync.pending, (state, action) => {
       state.status = "loading";
@@ -55,4 +78,6 @@ export const selectAllBooks = (state) => {
 /*
   REDUCER
 */
+export const { increaseOrderQuantity, decreaseOrderQuantity } =
+  allBooksSlice.actions;
 export default allBooksSlice.reducer;

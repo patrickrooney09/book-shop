@@ -17,20 +17,42 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     //possibly delete the saved variable
-    const item = await Item.findOrCreate({
-      where: { title: req.body.title, cartId: req.body.cartId },
+    const item = await Item.create({
       defaults: {
         title: req.body.title,
         author: req.body.author,
         price: req.body.price,
         book_image: req.body.book_image,
+        quantity: req.body.quantity,
       },
     });
 
+    res.status(201).send(item);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/", async (req, res, next) => {
+  try {
+    //possibly delete the saved variable
+    console.log("REQUEST OBJECT", req.body);
+    const item = await Item.findAll({
+      where: { title: req.body.title, cartId: req.body.cartId },
+    });
     await Item.increment("quantity", {
       by: 1,
       where: { title: req.body.title, cartId: req.body.cartId },
     });
+    await Item.decrement("quantity", {
+      by: 1,
+      where: { title: req.body.title, cartId: req.body.cartId },
+    });
+    console.log(item);
+    if (item[0].quantity === 0) {
+      console.log("DESTROYED?");
+      await item[0].destroy();
+    }
     res.status(201).send(item);
   } catch (error) {
     next(error);
@@ -43,7 +65,6 @@ router.delete("/:cartId/:itemId", async (req, res, next) => {
     const cart = await Item.findAll({ where: { cartId: req.params.cartId } });
 
     let item = await cart.filter((currentBook) => {
-      console.log(currentBook.id === Number(req.params.itemId));
       if (currentBook.id === Number(req.params.itemId)) {
         return currentBook;
       }

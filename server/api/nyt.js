@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
       url: `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NYT_API_KEY}`,
     };
     axios.request(options).then((response) => {
+      console.log("RESPONSE", response.data);
       res.json(response.data);
     });
   } catch (err) {
@@ -31,7 +32,7 @@ router.get("/", async (req, res, next) => {
       url: `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NYT_API_KEY}`,
     };
     axios.request(options).then((response) => {
-      res.json(response.data);
+      res.json(response.data.books);
     });
   } catch (err) {
     next(err);

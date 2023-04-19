@@ -6,7 +6,7 @@ const Item = db.define("item", {
   author: Sequelize.STRING,
   price: Sequelize.STRING,
   book_image: Sequelize.STRING,
-  quantity: { type: Sequelize.INTEGER, defaultValue: 0 },
+  quantity: { type: Sequelize.INTEGER },
 });
 
 module.exports = Item;
