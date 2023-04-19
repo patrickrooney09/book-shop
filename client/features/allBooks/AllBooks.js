@@ -35,10 +35,11 @@ const AllBooks = () => {
           <img src={book.book_image} alt="Book Image" width="50" height="50" />
           <button
             onClick={() => {
-              dispatch(addBook(book));
               if (Object.keys(user).length > 0) {
                 // checking if the user object is empty- previously i had this as if user undefined
                 dispatch(addItemAsync({ ...book, cartId: user.id }));
+              } else {
+                dispatch(addBook(book));
               }
             }}
           >

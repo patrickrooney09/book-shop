@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const addItemAsync = createAsyncThunk("addItem", async (itemData) => {
-  console.log(itemData);
   const { data } = await axios.post("/api/items", itemData);
   return data;
 });

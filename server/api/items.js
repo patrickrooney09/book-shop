@@ -26,11 +26,11 @@ router.post("/", async (req, res, next) => {
         book_image: req.body.book_image,
       },
     });
+
     await Item.increment("quantity", {
       by: 1,
       where: { title: req.body.title, cartId: req.body.cartId },
     });
-
     res.status(201).send(item);
   } catch (error) {
     next(error);
